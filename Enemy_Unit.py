@@ -1,4 +1,5 @@
 import pygame
+import random
 
 
 class Blob():
@@ -75,6 +76,25 @@ class Appell():
         x = int(self.apell_position_x)
         y = int(self.apell_position_y)
         pygame.draw.circle(screen, (255, 255, 255), (x, y), 10, 0)
+
+
+class Rain():
+    def __init__(self):
+        self.x = random.randrange(900)
+        self.y = random.randrange(-500, -10)
+        self.z = random.randrange(0, 20)
+
+    def update(self):
+        self.y += self.z
+        if self.y > 600:
+            self.y = random.randrange(-50, -10)
+
+    def drow_drop(self, screen):
+        self.update()
+        x = int(self.x)
+        y = int(self.y)
+        z = int(self.z)
+        pygame.draw.line(screen, (138, 43, 226), (x, y), (x, y + z), 2)
 
 
 def moveing_way(chiken, appel):
